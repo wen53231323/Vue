@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+			<!-- 默认空格也会获取 -->
+			<p><input type="text" placeholder="请输入姓名" v-model="name1"/><input type="button" value="普通获取" @click="get1"/></p>
+			<!-- 使用v-model.trim自动去空格后获取 -->
+			<p><input type="text" placeholder="请输入姓名" v-model.trim="name2"/><input type="button" value="去空格获取" @click="get2"/></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				name1: "",
+				name2: ""
+			},
+			// methods用于定义事件的处理函数
+			methods: {
+				get1(){
+					alert("普通获取："+this.name1)
+				},
+				get2(){
+					alert("去空格获取："+this.name2)
+				}
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+
+			<!-- 首字母大写 -->
+			<p>{{message | filterB(0)}}</p>
+			<!-- 全大写 -->
+			<p>{{message | filterB(1)}}</p>
+			<!-- 全小写 -->
+			<p>{{message | filterB(2)}}</p>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 全局过滤器（必须在Vue实例对象前声明）
+		Vue.filter('filterB', (string, type) => {
+			let json = '';
+			switch (type) {
+				case 0:
+					json = string.charAt(0).toUpperCase() + string.slice(1);
+					break;
+				case 1:
+					json = string.toUpperCase();
+					break;
+				case 2:
+					json = string.toLowerCase();
+					break;
+				default:
+					json = string;
+			}
+			return json;
+		});
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				message: "hello World"
+			},
+			// methods用于定义事件的处理函数
+			methods: {
+
+			},
+			// filters用于定义过滤器函数（私有过滤器）
+			filters: {
+
+			}
+		});
+	</script>
+</html>

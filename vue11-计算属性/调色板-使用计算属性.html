@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style>
+			.box {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+			<p>R：<input type="text" v-model.number="r"></p>
+			<p>G：<input type="text" v-model.number="g"></p>
+			<p>B：<input type="text" v-model.number="b"></p>
+
+			<!-- 专门用户呈现颜色的 div 盒子 -->
+			<!-- 在属性身上，: 代表  v-bind: 属性绑定，:style 代表动态绑定一个样式对象，值是一个 { } 样式对象 -->
+			<!-- 反引号``表示动态拼接字符串${}中是具体值 -->
+			<div class="box" :style="{ backgroundColor: rgb }">
+				{{ rgb }}
+			</div>
+			<p><button @click="show">展示</button></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 全局过滤器（必须在Vue实例对象前声明）
+		Vue.filter('', () => {});
+
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				// 红色
+				r: 0,
+				// 绿色
+				g: 0,
+				// 蓝色
+				b: 0
+			},
+			// methods用于定义事件的处理函数
+			methods: {
+				// 点击按钮，弹窗显示最新的颜色
+				show() {
+					alert(this.rgb)
+				}
+			},
+			// computed用于定义计算属性函数（私有计算属性）
+			computed: {
+				// 作用：返回rgb(x,x,x)字符串
+				rgb() {
+					return `rgb(${this.r}, ${this.g}, ${this.b})`
+				}
+			},
+			// filters用于定义过滤器函数（私有过滤器）
+			filters: {
+
+			},
+			// watch用于定义监听器函数
+			watch: {
+
+			},
+		});
+	</script>
+</html>

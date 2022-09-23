@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/axios.js"></script>
+	</head>
+	<body>
+
+		<button id="btnGET">GET</button>
+
+	</body>
+	<!-- Axios发起Get请求基本使用 -->
+	<script>
+		axios({
+			// 请求方式
+			method: "get",
+			// 请求地址和参数
+			url: "http://localhost:8080/axios?username=zhangsan&password=123456",
+			// 请求头参数（get请求或post请求都可用，以k=v&k=v方式发送请求参数，将参数拼接到请求地址后）
+			params: {
+				name: "zhangsan",
+				password: 123456
+			},
+			// 响应数据
+		}).then(function(response) {
+			// 弹窗提示
+			alert(response.data);
+		})
+	</script>
+
+	<!-- Axios发起Get请求简化使用 -->
+	<script>
+		// axios.get('url地址', {params: { 请求头参数 } })
+		axios.get(
+			"http://localhost:8080/axios?username=zhangsan&password=123456", {
+				params: {
+					name: "zhangsan",
+					password: 123456
+				}
+			},
+		).then(function(response) {
+			// 弹窗提示
+			alert(response.data);
+		});
+	</script>
+
+	<!-- Axios发起Get请求优化使用 -->
+	<script>
+		// 如果调用某个方法的返回值是promise实例，则前面加await，await只能在async'修饰'的方法中
+		document.querySelector('#btnGET').addEventListener('click', async function() {
+			// 使用解构赋值，从axios中封装的大对象中，把data属性解构出来，然后使用冒号:进行重命名
+			const {data: response} = await axios.get('http://localhost:8080/axios', {
+				params: {
+					name: "zhangsan",
+					password: 123456
+				}
+			})
+			console.log(response)
+		});
+	</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+
+			<p><input type="text" v-model="username" /></p>
+			<p><input type="text" v-model="info.username" /></p>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 全局过滤器（必须在Vue实例对象前声明）
+		Vue.filter('', () => {});
+
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				username: "小明",
+				info: {
+					username: "小张"
+				}
+			},
+			// methods用于定义事件的处理函数
+			methods: {
+
+			},
+			// filters用于定义过滤器函数（私有过滤器）
+			filters: {
+
+			},
+			// watch用于定义监听器函数
+			watch: {
+				// 对象对象格式的侦听器，可以通过 immediate 选项，让侦听器自动触发
+				username: {
+					// handler 是固定写法，表示当 username 的值变化时，自动调用 handler 处理函数
+					handler(newVal, oldVal) {
+						console.log("页面初次渲染好之后，就立即触发当前的 watch 侦听器")
+						console.log("旧值：" + oldVal + "=>" + "新值：" + newVal);
+					},
+					// 表示页面初次渲染好之后，就立即触发当前的 watch 侦听器
+					immediate: true,
+				},
+				// 对象对象格式的侦听器，可以通过 deep 选项，让侦听器深度监听对象中每个属性的变化
+				info: {
+					// handler 是固定写法，表示当 name 的值变化时，自动调用 handler 处理函数
+					handler(newVal, oldVal) {
+						alert("对象属性中任何一个属性变化，都会触发侦听器\n" + "旧值：" + oldVal + "=>" + "新值：" + newVal);
+					},
+					// 开启深度监听，只要对象属性中任何一个属性变化，都会触发侦听器
+					deep: true,
+				},
+			},
+		});
+	</script>
+</html>

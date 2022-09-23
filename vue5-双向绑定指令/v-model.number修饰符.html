@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+			<!-- 默认用户的输入值为字符串类型 -->
+			<p><input type="text" v-model="a">+<input type="text" v-model="b">求和：{{ a+b }} </p>
+			<!-- 使用v-model.number自动将用户的输入值转为数值类型 -->
+			<p><input type="text" v-model.number="c">+<input type="text" v-model.number="d">求和：{{ c+d }}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				a: 1,
+				b: 1,
+				c: 1,
+				d: 1,
+			},
+			// methods用于定义事件的处理函数
+			methods: {
+
+			}
+		});
+	</script>
+</html>
