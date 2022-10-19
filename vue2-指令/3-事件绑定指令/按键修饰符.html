@@ -3,28 +3,32 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<script src="js/vue.js"></script>
+		<script src="../js/vue.js"></script>
 	</head>
 	<body>
 		<!-- 准备一个容器 -->
 		<div id="test">
-			<p>{{a}}</p>
-			<input type="button" value="按钮" @click="add()">
-
+			<input type="text" @keyup.enter="submit" placeholder="按回车键提交内容">
+			<input type="text" @keyup.esc="clearInput" placeholder="按Esc键清空内容">
 		</div>
 	</body>
 	<script type="text/javascript">
-		const vm = new Vue({
+		new Vue({
 			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
 			el: "#test",
 			// data对象用来定义数据模型，数据提供给el指定的容器使用
 			data: {
-				a: 1
+
 			},
 			// methods用于定义事件的处理函数
 			methods: {
-				add() {
-					vm.a+=1
+				submit(){
+					// 模拟提交表单
+					alert("表单被提交")
+				},
+				clearInput(event) {
+					// 将输入框重置为空
+					event.target.value = '';
 				}
 			}
 		});

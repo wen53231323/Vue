@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js"></script>
+		<style>
+			.red {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="test">
+			<!-- 单个class样式可以直接使用三元表达式 -->
+			<div :class="istrue ? 'red':'' ">颜色去除</div>
+			<!-- 多个class样式可以使用数组绑定多个三元表达式 -->
+			<div :class="[istrue ? 'red':'', istrue ? 'red':'']">颜色去除</div>
+			<button @click="color_del">按钮</button>
+			<!-- 多个class样式可以还使用对象绑定 -->
+			<div :class="classtest">颜色去除</div>
+			<button @click="red_del">按钮</button>
+
+			<!-- 对象语法绑定内联的 style -->
+			<div
+				:style="{ fontSize: size+'px',color:fontcolor,'background-color':test}"
+			>
+				内联的style
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			// el用于指定当前vue实例为哪个容器服务（值通常为css选择器）
+			el: "#test",
+			// data对象用来定义数据模型，数据提供给el指定的容器使用
+			data: {
+				istrue: true,
+				classtest: {
+					// 属性名是class类名，值是布尔值
+					red: true,
+				},
+				fontcolor: "blue",
+				test: "pink",
+				size:50
+			},
+			methods: {
+				color_del() {
+					this.istrue = false;
+				},
+				red_del() {
+					this.classtest.red = false;
+				},
+			},
+		});
+	</script>
+</html>
